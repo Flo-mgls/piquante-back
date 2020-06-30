@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const userRoutes = require("routes/user");
+
 mongoose.connect('mongodb+srv://f-magalhaes:P6Piquante@cluster0-1accl.mongodb.net/<dbname>?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -18,9 +20,6 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.use((req, res) => {
-    res.status(200).json({ message: "requête envoyé"});
-    console.log(req.body)
-});
+app.use("/api/auth", userRoutes);
 
 module.exports = app;
