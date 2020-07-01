@@ -13,8 +13,10 @@ exports.getOneSauce = (req, res, next) => {
 };
 
 exports.createSauce = (req, res, next) => {
+    const sauce = JSON.parse(req.body.sauce);
     const newSauce = new Sauce({
-        ...req.body
+        ...sauce,
+        imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}` 
     });
     newSauce.save()
     .then(() => res.status(201).json({message: "Sauce crée !"}))
