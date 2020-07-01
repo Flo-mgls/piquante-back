@@ -1,4 +1,4 @@
-const Sauce = require("../models/Sause");
+const Sauce = require("../models/Sauce");
 
 exports.getAllSauces = (req, res, next) => {
     Sauce.find()
@@ -14,9 +14,14 @@ exports.getOneSauce = (req, res, next) => {
 
 exports.createSauce = (req, res, next) => {
     const sauce = JSON.parse(req.body.sauce);
+    delete sauce._id;
     const newSauce = new Sauce({
         ...sauce,
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}` 
+        imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+        likes: 0,
+        dislikes: 0,
+        usersLiked: [],
+        usersdisliked: []
     });
     newSauce.save()
     .then(() => res.status(201).json({message: "Sauce crée !"}))
