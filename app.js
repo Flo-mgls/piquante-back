@@ -2,7 +2,6 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const path = require("path");
 const helmet = require("helmet");
 // FIN MODULES
@@ -12,12 +11,8 @@ const userRoutes = require("./routes/user");
 const sauceRoutes = require("./routes/sauce");
 // FIN IMPORTATIONS
 
-// CONNEXTION BASE DE DONNEE
-mongoose.connect('mongodb+srv://f-magalhaes:P6Piquante@cluster0-1accl.mongodb.net/<dbname>?retryWrites=true&w=majority',
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
+// CONNEXION BASE DE DONNEE
+const dbConnect = require("./middleware/db-connect");
 // FIN CONNEXION
 
 // HELMET
