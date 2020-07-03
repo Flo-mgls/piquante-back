@@ -13,7 +13,7 @@ const sauceRoutes = require("./routes/sauce");
 
 // CONNEXION BASE DE DONNEE
 const dbConnect = require("./middleware/db-connect");
-// FIN CONNEXION
+// FIN CONNEXION 
 
 // HELMET
 app.use(helmet()); // Protège l'app en paramétrant des Headers (notamment contre les failles XSS)
