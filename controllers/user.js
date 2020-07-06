@@ -1,4 +1,5 @@
 // MODULES
+const env = require("../environment"); // Récupère les variables d'environnement
 const bcrypt = require("bcrypt"); // Hack le mot de passe
 const jwt = require("jsonwebtoken"); // Génère un token sécurisé
 // FIN MODULES
@@ -39,7 +40,7 @@ exports.login = (req, res, next) => {
             userId: user._id,
             token: jwt.sign(
                 {userId: user._id},
-                "TOKEN_SECRET",
+                env.token,
                 {expiresIn: "24h"}
             )
             });

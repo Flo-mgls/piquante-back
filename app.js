@@ -1,6 +1,8 @@
 // MODULES
 const express = require("express");
 const app = express();
+const env = require("./environment");
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const helmet = require("helmet");
@@ -12,7 +14,11 @@ const sauceRoutes = require("./routes/sauce");
 // FIN IMPORTATIONS
 
 // CONNEXION BASE DE DONNEE
-const dbConnect = require("./middleware/db-connect");
+mongoose.connect(`mongodb+srv://${env.dbId}:${env.dbPW}@cluster0-1accl.mongodb.net/piquante?retryWrites=true&w=majority`,
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 // FIN CONNEXION 
 
 // HELMET
