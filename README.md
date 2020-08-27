@@ -10,7 +10,7 @@ npm start
 - Créez un fichier nommé *.env* à la racine
 > app.js\
 > **.env**\
-> server.js\
+> server.js
 
 Y insérer directement ces 3 variables d'environnements:\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DB_ID=readWritePiquante\
